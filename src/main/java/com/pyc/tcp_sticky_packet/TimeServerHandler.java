@@ -24,11 +24,13 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf = (ByteBuf) msg;
+        /*ByteBuf buf = (ByteBuf) msg;
         byte[] req = new byte[buf.readableBytes()];
         buf.readBytes(req);
         String body = new String(req, StandardCharsets.UTF_8).substring(0, req.length
-        - System.getProperty("line.separator").length());
+        - System.getProperty("line.separator").length());*/
+        // 为解决 TCP 粘包问题，将上述代码注释
+        String body = (String) msg;
         System.out.println("The time server receive order :" + body + "; the counter is :" + ++counter);
         String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body)?new java.util.Date(System.currentTimeMillis())
                 .toString():"BAD ORDER";
