@@ -1,12 +1,6 @@
-//IntelliJ IDEA
-//NettyProject
-//TimeServer
-//2021/1/14
-// Author:御承扬
-//E-mail:2923616405@qq.com
+package com.pyc.tcp_sticky_packet;
 
-package com.pyc.about_time;
-
+import com.pyc.about_time.TimeServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -15,6 +9,18 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+
+/**
+ * @author 御承扬
+ * @product IntelliJ IDEA
+ * @project NettyProject
+ * @file TimeServer
+ * @pack com.pyc.tcp_sticky_packet
+ * @date 2021/1/15
+ * @time 9:02
+ * @E-mail 2923616405@qq.com
+ **/
+
 
 public class TimeServer {
     public void bind(int port) throws Exception{
@@ -32,7 +38,7 @@ public class TimeServer {
             workerGroup.shutdownGracefully();
         }
     }
-    public class ChildChannelHandler extends ChannelInitializer<SocketChannel>{
+    private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
         @Override
         protected void initChannel(SocketChannel socketChannel) throws Exception {
             socketChannel.pipeline().addLast(new TimeServerHandler());
@@ -48,6 +54,6 @@ public class TimeServer {
                 e.printStackTrace();
             }
         }
-        new TimeServer().bind(port);
+        new com.pyc.about_time.TimeServer().bind(port);
     }
 }
