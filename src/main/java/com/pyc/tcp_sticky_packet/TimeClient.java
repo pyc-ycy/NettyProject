@@ -51,6 +51,6 @@ public class TimeClient {
             }
         }
 
-        new com.pyc.about_time.TimeClient().connect(port, "127.0.0.1");
+        new TimeClient().connect(port, "127.0.0.1");
     }
 }

@@ -53,6 +53,6 @@ public class TimeServer {
                 e.printStackTrace();
             }
         }
-        new com.pyc.about_time.TimeServer().bind(port);
+        new TimeServer().bind(port);
     }
 }
